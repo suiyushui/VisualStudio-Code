@@ -5,9 +5,9 @@
       "includePath": [
         "${workspaceFolder}/**"
       ],
-      "compilerPath": "D:/Program Files/MinGW/bin/gcc.exe",
+      "compilerPath": "D:/Program Files/Dec-c++/mingw64/bin/gcc.exe",
       "cStandard": "${default}",
-      "cppStandard": "${default}",
+      "cppStandard": "c++11", 
       "intelliSenseMode": "windows-gcc-x86",
       "compilerArgs": [
         ""

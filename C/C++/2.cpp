@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <map>
 #include <vector>
@@ -69,5 +70,32 @@ int main() {
 	int n = 100000; // 目标数量
 	int steps = calculateSteps(n);
 	std::cout << steps << std::endl;
+	return 0;
+}
+*/
+
+#include <iostream>
+#include <vector>
+#include <numeric>// accumulate
+
+using namespace std;
+int main(){
+	int n=24,k=3;
+	vector<vector<long long>> dp(n+1,vector<long long>(1<<4,0));
+	dp[0][0]=1;
+	for(int i=1;i<=n;i++){
+		for(int mask=0;mask<(1<<4);mask++){
+			if(dp[i-1][mask]==0)continue;
+
+			int new_mask=(mask<<1)&0b1111;
+			dp[i][new_mask]+=dp[i-1][mask];
+
+			new_mask=(mask<<1|1)&0b1111;
+			if(__builtin_popcount(mask)<k)
+				dp[i][new_mask]+=dp[i-1][mask];
+		}
+	}
+	long long ans=accumulate(dp[n].begin(),dp[n].end(),0);
+	cout<<ans<<endl;
 	return 0;
 }
