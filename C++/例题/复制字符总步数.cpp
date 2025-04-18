@@ -74,12 +74,14 @@ int main() {
 }
 */
 
+
+//24个01串中,任意连续5个中不存在3个1,则称为可行串。求有多少可行串。
 #include <iostream>
 #include <vector>
 #include <numeric>// accumulate
 
 using namespace std;
-int main(){
+void solve(){
 	int n=24,k=3;
 	vector<vector<long long>> dp(n+1,vector<long long>(1<<4,0));
 	dp[0][0]=1;
@@ -97,5 +99,23 @@ int main(){
 	}
 	long long ans=accumulate(dp[n].begin(),dp[n].end(),0);
 	cout<<ans<<endl;
+}
+void solve2(){
+	int n=24,k=3,ans=0;
+	int max_num=1<<24;
+	for(int i=0;i<max_num;i++){
+		vector<int> num(25,0);
+		for(int j=0;j<24;j++)
+			num[j+1]=num[j]+((i>>j)&1);
+		int cnt=1;
+		if(num[4]>k) cnt=0;
+		for(int j=5;j<=24;j++)
+			if(num[j]-num[j-5]>k) cnt=0;
+		ans+=cnt;
+	}
+	cout<<ans<<endl;
+}
+int main(){
+	solve2();
 	return 0;
 }
