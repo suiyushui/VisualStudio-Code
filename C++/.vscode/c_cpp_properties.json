@@ -1,0 +1,20 @@
+{
+    "configurations": [
+      {
+        "name": "Win64-MinGW-w64",
+        "includePath": [
+          "${workspaceFolder}/**"
+        ],
+        "defines": [
+          "_DEBUG",
+          "UNICODE",
+          "_UNICODE"
+        ],
+        "compilerPath": "D:\\Program Files\\mingw64\\bin\\g++.exe", // MinGW-w64 路径
+        "cStandard": "c17",
+        "cppStandard": "c++11",  // 与编译选项一致
+        "intelliSenseMode": "windows-gcc-x64"
+      }
+    ],
+    "version": 4
+  }

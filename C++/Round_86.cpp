@@ -72,3 +72,20 @@
 //     }
 //     return 0;
 // }
+
+
+
+#include<iostream>
+#include<vector>
+#include<utility>
+using namespace std; 
+int main(){
+    cout<<"Hello World"<<endl;
+    vector<pair<int,int>> v;
+    v.push_back(make_pair(1,2));
+    v.push_back(make_pair(3,4));
+    for(auto t :v){
+        cout<<t.first<<" "<<t.second<<endl;
+    }
+    return 0;
+}

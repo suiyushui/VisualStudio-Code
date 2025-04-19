@@ -1,24 +1,18 @@
 #include <iostream>
 #include <thread>
-#include <vector>
+#include <mutex>
 
-int count = 0;
+std::mutex mtx;
 
-void add(int id) {
-    for(int i = 0; i < 10000; i++){
-        count++;
-    }
-    std::cout << "Thread " << id << " finished.\n";
+void print_num(int num) {
+    std::lock_guard<std::mutex> lock(mtx);
+    std::cout << "Thread " << std::this_thread::get_id() << " prints " << num << std::endl;
 }
 
 int main() {
-    std::vector<std::thread> threads;
-    for(int i = 0; i < 10; i++){
-        threads.emplace_back(std::thread(add, i));
-    }
-    for(auto& t : threads){
-        t.join(); // 等待线程结束
-    }
-    std::cout << "Final count: " << count << "\n";
+    std::thread t1(print_num, 1);
+    std::thread t2(print_num, 2);
+    t1.join();
+    t2.join();
     return 0;
 }

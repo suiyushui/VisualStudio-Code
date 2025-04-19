@@ -819,4 +819,5 @@ int main(){
         if(j==m) cout<< i-m+1<<" "<<i<<endl,j=next[j-1];
         i++;
     }
+    return 0;
 }
