@@ -10,9 +10,9 @@
           "UNICODE",
           "_UNICODE"
         ],
-        "compilerPath": "D:\\Program Files\\mingw64\\bin\\g++.exe", // MinGW-w64 路径
+        "compilerPath": "D:\\Program Files\\mingw64\\bin\\gcc.exe",
         "cStandard": "c17",
-        "cppStandard": "c++11",  // 与编译选项一致
+        "cppStandard": "c++11", 
         "intelliSenseMode": "windows-gcc-x64"
       }
     ],
