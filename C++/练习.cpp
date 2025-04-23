@@ -800,24 +800,25 @@ int main()
 //     return 0;
 // }
 
-#include<bits/stdc++.h>
-using namespace std;
-int main(){
-    string s="abcabcbb";
-    string t="abca";
-    int n=s.length();
-    int m=t.length();
-    vector<int> next(m,0);
-    for(int i=1,j=0;i<m;){
-        while(j&&t[i]!=t[j]) j=next[j-1];
-        if(t[i]==t[j]) j++;
-        next[i++]=j;
-    }
-    for(int i=0,j=0;i<n;){
-        while(j&&s[i]!=t[j]) j=next[j-1];
-        if(s[i]==t[j]) j++;
-        if(j==m) cout<< i-m+1<<" "<<i<<endl,j=next[j-1];
-        i++;
-    }
-    return 0;
-}
+// #include<bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string s="abcabcbb";
+//     string t="abca";
+//     int n=s.length();
+//     int m=t.length();
+//     vector<int> next(m,0);
+//     for(int i=1,j=0;i<m;){
+//         while(j&&t[i]!=t[j]) j=next[j-1];
+//         if(t[i]==t[j]) j++;
+//         next[i++]=j;
+//     }
+//     for(int i=0,j=0;i<n;){
+//         while(j&&s[i]!=t[j]) j=next[j-1];
+//         if(s[i]==t[j]) j++;
+//         if(j==m) cout<< i-m+1<<" "<<i<<endl,j=next[j-1];
+//         i++;
+//     }
+//     return 0;
+// }
+
