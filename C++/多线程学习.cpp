@@ -86,3 +86,22 @@
 // }
 
 
+#include <iostream>
+using namespace std;
+
+int *p = NULL;
+
+void fun()
+{
+    p = new int(10);
+}
+
+int main()
+{
+    fun();
+    cout << "first: *p = " << *p << endl;
+    cout << "second: *p = " << *p << endl;
+    delete p;
+    p = NULL;
+    return 0;
+}
