@@ -36,16 +36,8 @@ export default {
   mounted() {
     axios.get("/product/search").then( ren=>{
       console.log(ren);
-    }).catch(err => {
-      console.log(err);
-    }),
+    });
     console.log("app组件被挂载");
-  },
-  components: {
-    Hello,
-    Movie,
-    Email,
-    New_Project
   }
 }
 </script>

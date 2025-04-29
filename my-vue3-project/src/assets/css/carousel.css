@@ -1,0 +1,78 @@
+main {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 20px;
+}
+
+.carousel {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    margin-top: 3rem; 
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%; 
+}
+
+.carousel-slide div {
+    flex: 0 0 100%;
+    min-width: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    display: block;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.carousel-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.carousel-controls button:hover {
+    color: #ccc;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-dots button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 0.2rem;
+    outline: none; 
+}
+
+.carousel-dots button:hover {
+    color: #ccc;
+}
+
+.carousel-dots button.active {
+    color: #ccc;
+}

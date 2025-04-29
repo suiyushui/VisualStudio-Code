@@ -85,23 +85,16 @@
 //     return 0;
 // }
 
-
 #include <iostream>
-using namespace std;
+#include <thread>
 
-int *p = NULL;
-
-void fun()
-{
-    p = new int(10);
+void thread_function() {
+    std::cout << "子线程运行\n";
 }
 
-int main()
-{
-    fun();
-    cout << "first: *p = " << *p << endl;
-    cout << "second: *p = " << *p << endl;
-    delete p;
-    p = NULL;
+int main() {
+    std::thread t(thread_function);
+    t.join();  // 等待线程结束
     return 0;
 }
+
