@@ -87,14 +87,32 @@
 
 #include <iostream>
 #include <thread>
+#include <chrono>
+#include <mutex>
+std::mutex cout_mutex;
 
-void thread_function() {
-    std::cout << "子线程运行\n";
+void task(int id) {
+    {
+        std::lock_guard<std::mutex> lock(cout_mutex);
+        std::cout << "Task " << id << " started" << std::endl;
+    }
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    {
+        std::lock_guard<std::mutex> lock(cout_mutex);
+        std::cout << "Task " << id << " finished" << std::endl;
+    }
 }
 
 int main() {
-    std::thread t(thread_function);
-    t.join();  // 等待线程结束
+    std::thread threads[3];
+    for (int i = 0; i < 3; ++i) {
+        threads[i] = std::thread(task, i);
+    }
+
+    for (auto& thread : threads) {
+        thread.join();
+    }
+
+    std::cout << "All tasks are finished." << std::endl;
     return 0;
 }
-

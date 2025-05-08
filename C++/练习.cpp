@@ -822,3 +822,19 @@ int main()
 //     return 0;
 // }
 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    vector<vector<int>> nums={{0,-2,3},{-1,0,0},{-3,-3,-2}};
+    int n=nums.size(),m=nums[0].size();
+    vector<int> dp(m+1,INT_MIN);
+    dp[m-1]=1;
+    for(int i=n-1;i>=0;i--){
+        for(int j=m-1;j>=0;j--){
+            dp[j]=max(min(dp[j+1],dp[j])-nums[i][j],1);
+        }
+    }
+    cout<<dp[0]<<endl;
+    return 0;
+}
