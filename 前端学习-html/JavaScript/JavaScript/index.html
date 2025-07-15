@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript对象创建工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#64748b',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <header class="mb-12 text-center">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gray-800 mb-4">
+                <i class="fa fa-code text-primary"></i> JavaScript 对象创建工具
+            </h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                通过直观的表单界面创建 JavaScript 对象，实时查看对象结构和属性值
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- 对象创建表单 -->
+            <div class="bg-white rounded-xl p-6 card-shadow transition-custom hover:shadow-lg">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fa fa-plus-circle text-primary mr-2"></i> 创建新对象
+                </h2>
+                
+                <div class="mb-6">
+                    <label for="objectName" class="block text-sm font-medium text-gray-700 mb-1">对象名称</label>
+                    <input type="text" id="objectName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" placeholder="例如: person" value="person">
+                </div>
+                
+                <div id="propertiesContainer">
+                    <h3 class="text-lg font-medium text-gray-700 mb-3">对象属性</h3>
+                    
+                    <div class="property-item mb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">属性名</label>
+                                <input type="text" class="property-name w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" placeholder="name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">类型</label>
+                                <select class="property-type w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                                    <option value="string">字符串</option>
+                                    <option value="number">数字</option>
+                                    <option value="boolean">布尔值</option>
+                                    <option value="array">数组</option>
+                                    <option value="object">对象</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">值</label>
+                                <input type="text" class="property-value w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" placeholder="John Doe">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between mt-6">
+                    <button id="addProperty" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-custom flex items-center">
+                        <i class="fa fa-plus mr-2"></i> 添加属性
+                    </button>
+                    <button id="createObject" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-custom flex items-center shadow-md hover:shadow-lg">
+                        <i class="fa fa-magic mr-2"></i> 创建对象
+                    </button>
+                </div>
+            </div>
+
+            <!-- 对象预览区域 -->
+            <div class="bg-white rounded-xl p-6 card-shadow transition-custom hover:shadow-lg">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fa fa-eye text-primary mr-2"></i> 对象预览
+                </h2>
+                
+                <div id="objectPreview" class="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[300px] font-mono text-sm overflow-auto">
+                    <p class="text-gray-500 italic text-center">创建对象后在此处查看结果...</p>
+                </div>
+                
+                <div class="mt-4 flex justify-end">
+                    <button id="copyToClipboard" class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-custom flex items-center opacity-75 hover:opacity-100">
+                        <i class="fa fa-clipboard mr-2"></i> 复制代码
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 对象使用示例 -->
+        <div class="mt-12 bg-white rounded-xl p-6 card-shadow transition-custom hover:shadow-lg">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fa fa-book text-primary mr-2"></i> 使用示例
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <h3 class="font-medium text-gray-800 mb-3">基本用法</h3>
+                    <pre class="text-sm font-mono text-gray-700 overflow-x-auto"><code>// 访问对象属性
+const name = person.name;
+console.log(name); // 输出: John Doe
+
+// 调用对象方法
+person.sayHello(); // 输出: Hello, I'm John Doe</code></pre>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <h3 class="font-medium text-gray-800 mb-3">动态创建对象</h3>
+                    <pre class="text-sm font-mono text-gray-700 overflow-x-auto"><code>// 使用构造函数创建对象
+function createPerson(name, age) {
+    return {
+        name,
+        age,
+        sayHello() {
+            console.log(`Hello, I'm ${this.name}`);
+        }
+    };
+}
+
+const person = createPerson("John Doe", 30);</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>© 2025 JavaScript 对象创建工具 | 为开发者提供便捷的对象可视化创建体验</p>
+        </footer>
+    </div>
+
+    <script>
+        // 示例对象模板
+        const exampleObject = {
+            name: "John Doe",
+            age: 30,
+            isDeveloper: true,
+            skills: ["JavaScript", "HTML", "CSS"],
+            address: {
+                city: "New York",
+                country: "USA"
+            },
+            sayHello() {
+                return `Hello, I'm ${this.name}`;
+            }
+        };
+
+        // DOM 元素
+        const addPropertyBtn = document.getElementById('addProperty');
+        const createObjectBtn = document.getElementById('createObject');
+        const propertiesContainer = document.getElementById('propertiesContainer');
+        const objectPreview = document.getElementById('objectPreview');
+        const copyToClipboardBtn = document.getElementById('copyToClipboard');
+        const objectNameInput = document.getElementById('objectName');
+
+        // 初始化示例预览
+        objectPreview.innerHTML = formatObject(exampleObject);
+
+        // 添加新属性字段
+        addPropertyBtn.addEventListener('click', () => {
+            const propertyItem = document.createElement('div');
+            propertyItem.className = 'property-item mb-4 animate-fade-in';
+            propertyItem.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">属性名</label>
+                        <input type="text" class="property-name w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" placeholder="例如: age">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">类型</label>
+                        <select class="property-type w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom">
+                            <option value="string">字符串</option>
+                            <option value="number">数字</option>
+                            <option value="boolean">布尔值</option>
+                            <option value="array">数组</option>
+                            <option value="object">对象</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">值</label>
+                        <input type="text" class="property-value w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" placeholder="属性值">
+                    </div>
+                </div>
+                <div class="mt-2 text-right">
+                    <button class="remove-property text-red-500 hover:text-red-700 text-sm">
+                        <i class="fa fa-trash"></i> 移除
+                    </button>
+                </div>
+            `;
+            
+            propertiesContainer.appendChild(propertyItem);
+            
+            // 为移除按钮添加事件
+            propertyItem.querySelector('.remove-property').addEventListener('click', () => {
+                propertyItem.classList.add('opacity-0');
+                setTimeout(() => {
+                    propertyItem.remove();
+                }, 300);
+            });
+            
+            // 添加淡入动画
+            setTimeout(() => {
+                propertyItem.classList.add('opacity-100');
+            }, 10);
+        });
+
+        // 创建对象并预览
+        createObjectBtn.addEventListener('click', () => {
+            const objectName = objectNameInput.value.trim() || 'myObject';
+            const properties = Array.from(document.querySelectorAll('.property-item')).map(item => {
+                const name = item.querySelector('.property-name').value.trim();
+                const type = item.querySelector('.property-type').value;
+                let value = item.querySelector('.property-value').value.trim();
+                
+                // 根据类型转换值
+                switch (type) {
+                    case 'number':
+                        value = parseFloat(value) || 0;
+                        break;
+                    case 'boolean':
+                        value = value.toLowerCase() === 'true' || value === '1';
+                        break;
+                    case 'array':
+                        value = value.split(',').map(v => v.trim());
+                        break;
+                    case 'object':
+                        try {
+                            value = JSON.parse(value || '{}');
+                        } catch (e) {
+                            value = {};
+                        }
+                        break;
+                    case 'string':
+                    default:
+                        value = value;
+                        break;
+                }
+                
+                return { name, value };
+            }).filter(prop => prop.name); // 过滤掉空属性名
+            
+            if (properties.length === 0) {
+                showNotification('请至少添加一个属性', 'warning');
+                return;
+            }
+            
+            // 创建对象
+            const createdObject = properties.reduce((obj, prop) => {
+                obj[prop.name] = prop.value;
+                return obj;
+            }, {});
+            
+            // 添加方法示例
+            if (!createdObject.sayHello && properties.some(p => p.name === 'name')) {
+                createdObject.sayHello = function() {
+                    return `Hello, I'm ${this.name}`;
+                };
+            }
+            
+            // 显示对象
+            objectPreview.innerHTML = formatObject(createdObject, objectName);
+            showNotification('对象创建成功', 'success');
+        });
+
+        // 复制到剪贴板
+        copyToClipboardBtn.addEventListener('click', () => {
+            const codeToCopy = objectPreview.textContent;
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+                showNotification('代码已复制到剪贴板', 'success');
+            }).catch(err => {
+                showNotification('复制失败，请手动复制', 'error');
+                console.error('复制失败:', err);
+            });
+        });
+
+        // 格式化对象为可读的代码
+        function formatObject(obj, objectName = 'obj') {
+            try {
+                const indent = 2;
+                const formattedObj = JSON.stringify(obj, (key, value) => {
+                    // 处理函数
+                    if (typeof value === 'function') {
+                        return value.toString();
+                    }
+                    return value;
+                }, indent);
+                
+                // 美化函数显示
+                let result = formattedObj
+                    .replace(/"([^"]+)":\s*function\s*\(([^)]*)\)\s*{/g, '$1($2) {')
+                    .replace(/"([^"]+)":\s*"function\s*\(([^)]*)\)\s*{([^}]+)}"/g, '$1($2) { $3 }')
+                    .replace(/"([^"]+)":/g, '$1:')
+                    .replace(/"((?:\\.|[^"\\])*)"/g, (match, p1) => {
+                        // 不转义已经是字符串的值
+                        if (/^\s*function/.test(p1)) {
+                            return p1;
+                        }
+                        return `"${p1}"`;
+                    });
+                
+                // 添加对象声明
+                return `const ${objectName} = ${result};\n\n// 示例用法:\nconsole.log(${objectName}.name); // 访问属性\n${objectName}.sayHello?.(); // 调用方法`;
+            } catch (e) {
+                return `格式化对象失败: ${e.message}`;
+            }
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out z-50 ${
+                type === 'success' ? 'bg-green-500 text-white' : 
+                type === 'error' ? 'bg-red-500 text-white' : 
+                type === 'warning' ? 'bg-yellow-500 text-white' : 'bg-blue-500 text-white'
+            } translate-y-20 opacity-0`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fa ${
+                        type === 'success' ? 'fa-check-circle' : 
+                        type === 'error' ? 'fa-exclamation-circle' : 
+                        type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'
+                    } mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // 显示通知
+            setTimeout(() => {
+                notification.classList.remove('translate-y-20', 'opacity-0');
+            }, 10);
+            
+            // 自动隐藏
+            setTimeout(() => {
+                notification.classList.add('translate-y-20', 'opacity-0');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>    

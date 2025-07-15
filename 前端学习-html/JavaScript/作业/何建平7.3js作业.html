@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        input,select,button{
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+    </style>
+    <div>
+        <h1>判断月份的天数</h1>
+        <input type="number" id="num6" placeholder="输入月份">
+        <button onclick="solve6()">计算</button>
+        <p id="result6"></p>
+    </div>
+    <div>
+        <h1>简单计算器</h1>
+        <input type="number" id="num7_1" placeholder="输入第一个数字">
+        <select name="operator" id="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num7_2" placeholder="输入第二个数字">
+        <button onclick="solve7()">计算</button>
+        <p id="result7"></p>
+    </div>
+    <script>
+        //创建一个计算两个数和的函数。
+        var sum=(a,b)=>{
+            if(typeof a!== 'number' || typeof b!== 'number' ){
+                throw new Error("参数必须是数字");
+            }
+            return a+b;
+        }
+        console.log(sum(1,2));
+
+
+        //封装一个两个数的差的函数。
+        const MathOperations=(()=>{
+            const subtract= (a,b)=>{
+                if(typeof a!== 'number' || typeof b!== 'number' ){
+                    throw new Error("参数必须是数字");
+                }
+                return a-b;
+            };
+            return {
+                subtract
+            };
+        })();
+        console.log(MathOperations.subtract(5,3));
+
+        //利用函数求两个数的最大值
+        var max_num=(a,b)=>{
+            if(typeof a!== 'number' || typeof b!== 'number' ){
+                throw new Error("参数必须是数字");
+            }
+            return Math.max(a,b);
+        }   
+        console.log(max_num(5,3));
+
+        //利用函数求任意个数的最大值
+        var max_num2=(...args)=>{
+            if(!args.every(arg => typeof arg === 'number')){
+                throw new Error("所有参数必须是数字");
+            }
+            return Math.max(...args);   
+        }
+        console.log(max_num2(5,3,8,2));
+
+        //传递一个数组，实现数组翻转的函数。
+        var reverseArray=(arr)=>{
+            return arr.reverse();
+        }
+        console.log(reverseArray([1,2,3,4,5]));
+
+        //封装一个函数：浏览器接收一个月份判断这个月份的天数。
+        const monthDays=(()=>{
+            const day=(month)=>{
+                if(typeof month!== 'number' || month < 1 || month > 12){
+                    throw new Error("输入月份格式不正确!");
+                }
+                var months=[31,28,31,30,31,30,31,31,30,31,30,31];
+                return months[month-1];
+            }
+            return{
+                day
+            };
+        })();
+        function solve6() {
+            var month = parseInt(document.getElementById("num6").value,10);
+            if(isNaN(month) || month < 1 || month > 12) {
+                document.getElementById("result6").innerText = "输入月份格式不正确!";
+            }else{
+                var result = monthDays.day(month);
+                document.getElementById("result6").innerText = "该月份有" + result + "天";
+            }
+        }
+
+
+        // 封装一个函数：浏览器接收一个月份判断这个月份的天数
+        function solve7() {
+            var num1 = parseFloat(document.getElementById("num7_1").value);
+            var num2 = parseFloat(document.getElementById("num7_2").value);
+            var operator = document.getElementById("opt").value;
+            var result;
+
+            switch (operator) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 === 0) {
+                        result = "除数不能为零";
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                default:
+                    result = "未知操作";
+            }
+
+            document.getElementById("result7").innerText = "结果: " + result;
+        }
+
+        //创建一个函数传递一个数组返回数组中的最大值，最小值，还有和
+
+        const solve8 = (() => {
+            const max_min_sum = (arr) => {
+                if (!Array.isArray(arr) || arr.length === 0) {
+                    throw new Error("输入数组格式不正确!");
+                }
+                let max_num = Math.max(...arr);
+                let min_num = Math.min(...arr);
+                
+                const accumulate = (arr, fn) => {
+                    return arr.reduce(fn, 0);
+                };
+
+                let sum = accumulate(arr, (acc, cur) => {
+                    return acc + cur;
+                });
+                return {
+                    max_num,
+                    min_num,
+                    sum
+                };
+            };
+            return {
+                max_min_sum
+            };
+        })();
+
+        console.log(solve8.max_min_sum([1, 2, 3, 4, 5]));
+
+
+        //输入一个年份，判断是否是闰年（闰年可以被4或者400整除）
+        var isLeapYear=(year)=>{
+            if(typeof year!== 'number' || year < 1){
+                throw new Error("输入年份格式不正确!");
+            }
+            if(year%4==0&&year%100!=0||year%400==0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        console.log(isLeapYear(2000)); 
+    </script>
+
+    <script>
+    </script>
+</body>
+</html>

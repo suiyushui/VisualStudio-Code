@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var num = +prompt("请输入一个数字");
+        // var sum = 0;
+
+        // var fun = () => {
+        //     for (var i = 1; i <= num; i++) {
+        //         sum += i;
+        //     }
+        //     return sum;
+        // };
+
+        // console.log(fun());
+
+        // function sayHello(){
+        //     console.log(this);
+        // }
+        // sayHello();
+        // var obj = {
+        //     name: "张三",
+        //     sayHello: function (b,c) {
+        //         console.log(b,c);
+        //         console.log(this.name);
+        //     }
+        // };
+        // var obj2 = {
+        //     name: "李四"
+        // };
+        // obj.sayHello.call(obj2, "你好", "世界");
+        // obj.sayHello.apply(obj2,["你好","世界"]);
+        // var boundFunction=obj.sayHello.bind(obj2);
+        // boundFunction( "你好", "世界");
+
+        (function(a,b){
+        alert(`a=${a},b=${b}`);
+        })(3,4)
+        
+    </script>
+</body>
+</html>

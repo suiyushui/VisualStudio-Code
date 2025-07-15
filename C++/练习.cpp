@@ -319,7 +319,7 @@ int main()
     cin >> T;
     auto add_person = [&](string id, char gender)
     {
-        if (!people.count(id)) 
+        if (!people.count(id))
             people[id] = {gender, "-1", "-1"};
     };
     while (T--)
@@ -356,7 +356,6 @@ int main()
     return 0;
 }*/
 
-
 // #include <iostream>
 // #include <vector>
 // #include <queue>
@@ -370,12 +369,12 @@ int main()
 // int main() {
 //     int n, m, s, d;
 //     cin >> n >> m >> s >> d;
-    
+
 //     vector<int> city_rescue(n);
 //     for (int i = 0; i < n; ++i) {
 //         cin >> city_rescue[i];
 //     }
-    
+
 //     vector<vector<pair<int, int>>> adj(n); // 邻接表，存储邻接节点和边权
 //     for (int i = 0; i < m; ++i) {
 //         int u, v, w;
@@ -383,32 +382,32 @@ int main()
 //         adj[u].emplace_back(v, w);
 //         adj[v].emplace_back(u, w);
 //     }
-    
+
 //     vector<int> dist(n, INT_MAX);
 //     vector<int> rescue(n, 0);
 //     vector<int> num(n, 0);
 //     vector<int> pre(n, -1);
-    
+
 //     // 初始化起点
 //     dist[s] = 0;
 //     rescue[s] = city_rescue[s];
 //     num[s] = 1;
-    
+
 //     // 优先队列，按距离从小到大排列
 //     priority_queue<pii, vector<pii>, greater<pii>> pq;
 //     //greater<pii> 按距离从大到小排列
 //     pq.emplace(0, s);
-    
+
 //     while (!pq.empty()) {
 //         auto [current_dist, u] = pq.top();
 //         pq.pop();
-        
+
 //         // 如果当前的距离已经大于记录的最短距离，跳过
 //         if (current_dist > dist[u]) continue;
-        
+
 //         for (auto &[v, w] : adj[u]) {
 //             int new_dist = current_dist + w;
-            
+
 //             if (new_dist < dist[v]) {
 //                 dist[v] = new_dist;
 //                 rescue[v] = rescue[u] + city_rescue[v];
@@ -428,10 +427,10 @@ int main()
 //             }
 //         }
 //     }
-    
+
 //     // 输出结果
 //     cout << num[d] << " " << rescue[d] << endl;
-    
+
 //     // 回溯路径
 //     vector<int> path;
 //     int current = d;
@@ -441,13 +440,13 @@ int main()
 //     }
 //     path.push_back(s);
 //     reverse(path.begin(), path.end());
-    
+
 //     for (size_t i = 0; i < path.size(); ++i) {
 //         if (i != 0) cout << " ";
 //         cout << path[i];
 //     }
 //     cout << endl;
-    
+
 //     return 0;
 // }
 
@@ -553,7 +552,7 @@ int main()
 //             }
 //         }
 //     };
-    
+
 //     cout<<n<<'=';
 //     for(int prime:primes){
 //         int cnt=0;
@@ -568,7 +567,6 @@ int main()
 //     }
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -597,7 +595,6 @@ int main()
 //     }
 // }
 
-
 // #include <vector>
 // #include <queue>
 // #include <climits>
@@ -615,7 +612,7 @@ int main()
 //         graph[conn[0]].emplace_back(conn[1], conn[2]);
 //         graph[conn[1]].emplace_back(conn[0], conn[2]);
 //     }
-    
+
 //     // 使用优先队列（最小堆）来存储当前可以访问的节点及其连接成本
 //     // 每次从堆顶取出成本最小的节点进行访问
 //     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
@@ -626,7 +623,7 @@ int main()
 //     // res用于累加最小生成树的总成本
 //     // count用于记录已访问的节点数量
 //     int res = 0, count = 0;
-    
+
 //     // 当优先队列不为空且已访问节点数量小于n时，继续执行循环
 //     while(!pq.empty() && count < n) {
 //         // 从优先队列中取出成本最小的节点u
@@ -636,13 +633,12 @@ int main()
 //         if(visited[u]) continue;
 //         // 标记节点u为已访问
 
-
 //         visited[u] = true;
 //         // 将节点u的连接成本加入总成本res中
 //         res += cost;
 //         // 增加已访问节点的数量
 //         count++;
-        
+
 //         // 遍历节点u的所有邻居节点v及其连接成本c
 //         for(const auto& [v, c] : graph[u]) {
 //             // 如果邻居节点v尚未被访问，则将其及其连接成本加入优先队列
@@ -651,7 +647,7 @@ int main()
 //             }
 //         }
 //     }
-    
+
 //     // 如果已访问的节点数量等于n，则返回最小生成树的总成本res
 //     // 否则，返回-1，表示无法形成包含所有节点的最小生成树（即图不是连通的）
 //     return count == n ? res : -1;
@@ -682,8 +678,6 @@ int main()
 // vector<int> fac(10); // 存储构造的数字
 // vector<int> ji = {1, 3, 5, 7, 9}; // 奇数位候选
 // vector<int> ou = {0, 2, 4, 6, 8}; // 偶数位候选
-
-
 
 // int main() {
 //     cin.tie(0)->sync_with_stdio(0);
@@ -751,7 +745,6 @@ int main()
 
 //     return 0;
 // }
-
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -822,19 +815,355 @@ int main()
 //     return 0;
 // }
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<vector<int>> nums={{0,-2,3},{-1,0,0},{-3,-3,-2}};
+//     int n=nums.size(),m=nums[0].size();
+//     vector<int> dp(m+1,INT_MIN);
+//     dp[m-1]=1;
+//     for(int i=n-1;i>=0;i--){
+//         for(int j=m-1;j>=0;j--){
+//             dp[j]=max(min(dp[j+1],dp[j])-nums[i][j],1);
+//         }
+//     }
+//     cout<<dp[0]<<endl;
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// int main()
+// {
+//     int a = 10;
+// // do 循环执行
+// LOOP:
+//     do
+//     {
+//         if (a == 15)
+//         {
+//             // 跳过迭代
+//             a = a + 1;
+//             goto LOOP;
+//         }
+//         cout << "a 的值：" << a << endl;
+//         a = a + 1;
+//     } while (a < 20);
+//     return 0;
+// }
+
+
+// #include<unordered_map>
+// #include<list>
+// #include<utility>
+// #include<iostream>
+// #include<mutex>
+
+// using namespace std;
+
+// class LRUCache {
+// private:
+//     int capacity;
+//     // 双向链表，用于存储缓存
+//     list<pair<int, int>> cacheList;
+//     // 哈希表，用于快速查找元素
+//     unordered_map<int, list<pair<int, int>>::iterator> cacheMap;
+//     // 互斥锁，用于保护共享资源
+//     mutable mutex mtx;
+
+// public:
+//     LRUCache(int capacity) : capacity(capacity) {}
+
+//     int get(int key) {
+//         lock_guard<mutex> lock(mtx); // 锁定互斥锁，自动解锁
+//         auto it = cacheMap.find(key);
+//         if (it == cacheMap.end()) {
+//             return -1;
+//         }
+//         // 将找到的元素移动到链表的开头
+//         cacheList.splice(cacheList.begin(), cacheList, it->second);
+//         return it->second->second;
+//     }
+
+//     void put(int key, int value) {
+//         lock_guard<mutex> lock(mtx); // 锁定互斥锁，自动解锁
+//         auto it = cacheMap.find(key);
+//         if (it != cacheMap.end()) {
+//             // key存在，更新value
+//             it->second->second = value;
+//             cacheList.splice(cacheList.begin(), cacheList, it->second);
+//             return;
+//         }
+//         if (cacheList.size() == capacity) {
+//             // 缓存满了，删除最后一个
+//             int lastKey = cacheList.back().first;
+//             cacheMap.erase(lastKey);
+//             cacheList.pop_back();
+//         }
+//         cacheList.emplace_front(key, value);
+//         cacheMap[key] = cacheList.begin();
+//     }
+
+//     void print() const {
+//         lock_guard<mutex> lock(mtx); // 锁定互斥锁，自动解锁
+//         for (auto [k, v] : cacheList) {
+//             cout << k << " " << v << endl;
+//         }
+//     }
+// };
+
+// int main() {
+//     LRUCache cache(3);
+
+//     cache.put(1, 1);
+//     cache.put(2, 2);
+//     cache.put(3, 3);
+//     cout << cache.get(2) << endl; // 输出 2
+//     cache.put(4, 4);
+//     cout << cache.get(3) << endl; // 输出 -1，因为3被移除了
+
+//     cache.print();
+
+//     return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// void solve(){
+//     int n;
+//     cin>>n;
+//     int m=log2(n);
+//     if(pow(2,m)==n) cout<<-1<<endl;
+//     else cout<<pow(2,m)<<endl;
+// }
+// void solve2(){
+//     int n;
+//     cin>>n;
+//     string s;
+//     cin>>s;
+//     int count=0;
+//     bool flag=false;
+//     for(int i=0;i<n;i++){
+//         if(s[i]=='1'){
+//             count++;
+//         }else{
+//             if(count>1)flag=true;
+//             if(i>0&&s[i]=='0'&&s[i-1]=='0') flag=false;
+//             if(count==1&&!flag){
+//                 cout<<"NO"<<endl;
+//                 return;
+//             }
+//             count=0;
+//         }
+//     }
+//     if(s[n-1]=='1')cout<<"NO"<<endl;
+//     else cout<<"YES"<<endl;
+// }
+// void solve3(){
+//     int n,k;
+//     cin>>n>>k;
+//     int ans=k+1;
+//     while(n>0){
+//         if(n&1){
+//             if(n==1){
+//                 ans++;
+//             }else{
+//                 ans+=k;
+//             }
+//         }else{
+//             ans++;
+//         }
+//     }
+//     cout<<ans<<endl;
+// }
+// int main(){
+//     int T;
+//     cin>>T;
+//     while(T--){
+//         solve2();
+//     }
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// const int MAX_NODES=1005;//最大节点数
+// const int MAX_CAPACITY=1005;//最大容量
+
+// int n;
+// int capacity[MAX_NODES];//容量数组
+// int out_degree[MAX_NODES];  // 节点出度
+// bitset<MAX_NODES> dp[MAX_NODES]; // 记录访问过的节点
+
+// vector<vector<int>> tree;//邻接表
+
+// void dfs(int u,int parent){
+//     if(out_degree[u]==1&&u!=1){
+//         dp[u][capacity[u]]=true;
+//         return;
+//     }
+//     bitset<MAX_CAPACITY> dp_u;
+//     for(int i=0;i<=capacity[u];i++){
+//         dp_u.set(i);
+//     }
+//     for(int child:tree[u]){
+//         if(child==parent) continue;
+//         dfs(child,u);
+//         bitset<MAX_CAPACITY> dp_child;
+//         for(int k=0;k<=capacity[u];k++){
+//             if(dp[child][k]){
+//                 dp_child|=(dp[u]<<k);
+//             }
+//         }
+//         dp[u]=dp_child&dp_u;
+//     }
+// }
+
+// int main(){
+//     cin>>n;
+//     tree.resize(n+1);
+
+//     for (int i = 1; i <= n; i++) {
+//         dp[i].set(0);
+//     }
+
+//     for(int i=1;i<=n;i++){
+//         cin>>capacity[i];
+//     }
+
+//     for(int i=1;i<n;i++){
+//         int u,v;
+//         cin>>u>>v;
+//         tree[u].push_back(v);
+//         tree[v].push_back(u);
+//         out_degree[u]++;
+//         out_degree[v]++;
+//     }
+//         dfs(1, 0);
+    
+//     // 查找根节点最大可行产能
+//     for (int k = capacity[1]; k >= 0; k--) {
+//         if (dp[1][k]) {
+//             cout << k << endl;
+//             return 0;
+//         }
+//     }
+// }
+
+
+// #include<iostream>
+// #define ll long long
+// using namespace std;
+// const int N = 1e5+5,mod = 1e9+7;
+// ll n,a[N],pow3[N];
+// int main(){
+// 	scanf("%d",&n);
+// 	for(int i=1;i<=n;i++) scanf("%d",&a[i]);
+// 	pow3[0] = 1;	// 预处理 3 的次幂
+// 	for(int i=1;i<=n;i++) pow3[i] = pow3[i-1]*3%mod;
+// 	ll eor = 0, res = 0;	// eor 记录从 a[1] 一直异或到 a[i]
+// 	for(int i=1;i<=n-1;i++){
+// 		eor ^= a[i];
+// 		res = (res + (2*pow3[n-i-1]%mod)*eor%mod)%mod; 	// 每步都要取模
+// 	}
+// 	res = (res + (eor^a[n]))%mod;	// 最后一个数字
+// 	printf("%lld",res);
+// 	return 0;
+// } 
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int MAXN=15;
+//  int main() {
+//     int n;
+//     cin >> n;
+//     vector<vector<int>> grid(n+1, vector]<int>(n+1,0));
+//     while(true){
+//         int x,y,num;
+//         cin >> x >> y >> num;
+//         if(x==0&&y==0&&num==0) break;
+//         grid[x][y]=num;
+//     }
+//     int dp[2*MAXN][MAXN][MAXN][MAXN];
+//     for(int k=1;k<=2*n-1;k++){
+//         for(int i=1;i<=n;i++){
+//             int j=k-i+1;
+//             if(j<1||j>n) continue;
+//             for(int p=1;p<=n;p++){
+//                 int q=k-p+1;
+//                 if(q<1||q>n) continue;
+
+//                 int max_pre=0;
+
+//                 if(i>1&&p>1)
+//                     max_pre=max(max_pre,dp[k-1][i-1][j][p-1]);
+//                 if(i>1&&q>1)
+//                     max_pre=max(max_pre,dp[k-1][i-1][j][p]);
+//                 if(j>1&&p>1)
+//                     max_pre=max(max_pre,dp[k-1][i][j-1][p-1]);
+//                 if(j>1&&q>1)
+//                     max_pre=max(max_pre,dp[k-1][i][j-1][p]);
+
+//                 int current=(i==p&&j==q)?grid[i][j]:grid[i][j]+grid[p][q];
+//                 dp[k][i][j][p]=max_pre+current;
+//             }
+//         }
+//     }
+//     cout << dp[2*n-1][n][n][n] << endl;
+//     return 0;
+// }
+    
 
 #include<bits/stdc++.h>
 using namespace std;
-int main(){
-    vector<vector<int>> nums={{0,-2,3},{-1,0,0},{-3,-3,-2}};
-    int n=nums.size(),m=nums[0].size();
-    vector<int> dp(m+1,INT_MIN);
-    dp[m-1]=1;
-    for(int i=n-1;i>=0;i--){
-        for(int j=m-1;j>=0;j--){
-            dp[j]=max(min(dp[j+1],dp[j])-nums[i][j],1);
+class Solution {
+public:
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n=grid.size();
+        auto dp=vector(2*n,vector(n,vector(n,INT_MIN)));
+        dp[0][0][0]=grid[0][0];
+        for(int step=1;step<2*n-1;step++){
+            for(int x=0;x<n;x++){
+                int y=step-x;
+                if(y<0||y>=n||grid[x][y]<0) continue;
+                for(int X=0;X<n;X++){
+                    int Y=step-X;
+                    if(Y<0||Y>=n||grid[X][Y]<0) continue;
+                    int& res=dp[step][x][X];
+                    auto& last=dp[step-1];
+                    res=max(res,last[x][X]);
+                    if(x) res=max(res,last[x-1][X]);// 左上
+                    if(X) res=max(res,last[x][X-1]);// 左下
+                    if(x&&X) res=max(res,last[x-1][X-1]);
+                    res+=grid[x][y];
+                    if(x!=X) res+=grid[X][Y];
+                }
+            }
+        }
+        return max(0,dp[2*n-2][n-1][n-1]);
+    }
+    int cherryPickup1(vector<vector<int>>& grid) {
+        int n = grid.size();
+        vector<vector<vector<int>>> dp(n,vector(n,vector(n,INT_MIN)));
+        dp[0][0][0] = grid[0][0];
+        for(int k=0;k<2*n-1;k++){;
+            for(int x=max(k-n,0);x<min(k,n-1);x++){
+
+            }
         }
     }
-    cout<<dp[0]<<endl;
-    return 0;
-}
+    bool check(int mid,int n,int k,int wood[]){
+        int count=0;
+        for(int i=0;i<n;i++){
+            count+=wood[i]/mid;
+            if(count>=k) return true;
+        }
+        return false;
+    }
+}; 
