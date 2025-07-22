@@ -22,8 +22,8 @@
 
 import threading
 class SingletonMeta(type):
-    _instances = {}
-    _lock = threading.RLock()
+    _instances = {} 
+    _lock = threading.RLock() #允许同一个线程多次获取锁
 
     def __call__(cls, *a, **kw):
         print("_instances before:", cls._instances)
