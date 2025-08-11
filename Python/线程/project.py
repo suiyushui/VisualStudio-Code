@@ -1,8 +1,7 @@
-
 import random
 import threading
 import time
-from typing import Any, Dict, Type, TypeVar, Optional, final
+from typing import Any, Dict, Type, TypeVar, final
 
 T = TypeVar('T', bound='Singleton')
 
@@ -23,7 +22,7 @@ class Singleton:
         time.sleep(random.random() * 0.1)  # 模拟初始化耗时
         self._initialized = True  # 标记是否已初始化
         
-    @classmethod
+    @classmethod 
     def instance(cls: Type[T], *args: Any, **kwargs: Any) -> T:
         """
         获取单例实例的类方法
@@ -64,7 +63,7 @@ class Singleton:
             raise RuntimeError(
                 f"{cls.__name__} must be instantiated using the instance() class method"
             )
-        return cls._instances[cls]
+        return cls._instances[cls] # type: ignore
 
 def task() -> None:
     """

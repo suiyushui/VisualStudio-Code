@@ -1,0 +1,26 @@
+{
+    "name": "Alice",
+    "age": 25,
+    "city": "Beijing",
+    "hobbies": [
+        "reading",
+        "swimming",
+        "traveling"
+    ],
+    "pets": {
+        "dog": "Buddy",
+        "cat": "Whiskers"
+    },
+    "married": false,
+    "income": null,
+    "children": [
+        {
+            "name": "Bob",
+            "age": 18
+        },
+        {
+            "name": "Cindy",
+            "age": 16
+        }
+    ]
+}
