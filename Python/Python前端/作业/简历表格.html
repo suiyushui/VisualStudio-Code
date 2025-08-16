@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr{
+            height: 50px;
+            width : 70px;
+            text-align: center;
+        }
+        td:nth-child(odd):not(:last-child){
+            width: 100px;
+            background-color: #f2f2f2;
+            font-weight: 500;
+        }
+        caption{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <table border="1px" width="21*10" style="border-collapse:collapse; border:1px solid #000;">
+        <caption>个人简历</caption>
+        <tr>
+            <td>姓名</td>
+            <td>阿飞</td>
+            <td>性别</td>
+            <td>女</td>
+            <td>年龄</td>
+            <td>22岁</td>
+            <td rowspan="4" class="no-padding"><img src="./image.png" alt="半身照" width="100px"/></td>
+        </tr>
+        <tr>
+            <td>政治面貌</td>
+            <td>群众</td>
+            <td>体重</td>
+            <td>60kg</td>
+            <td>籍贯</td>
+            <td>北京</td>
+        </tr>
+        <tr>
+            <td>健康状况</td>
+            <td>良好</td>
+            <td>身高</td>
+            <td>175cm</td>
+            <td>学历</td>
+            <td>本科</td>
+        </tr>
+        <tr>
+            <td>毕业院校</td>
+            <td colspan="3">XXXX大学</td>
+            <td>专业</td>
+            <td >市场营销</td>
+        </tr>
+        <tr>
+            <td>求职意向</td>
+            <td colspan="6">销售经理</td>
+        </tr>
+        <tr>
+            <td>联系方式</td>
+            <td colspan="6">电话:13812345678 &nbsp;&nbsp;邮箱:xxxx@xxxx.com</td>
+        </tr>
+        <tr>
+            <td>教育经历</td>
+            <td colspan ="6">20XX.09-20XX.07 XXXX大学 市场营销 本科</td>
+        </tr>
+        <tr>
+            <td>专业课程</td>
+            <td colspan ="6">XX课程、XX课程、XX课程、XX课程、XX课程、XXX课程,XX课程、XX课程等</td>
+        </tr>
+        <tr>
+            <td>荣誉奖项</td>
+            <td colspan ="6">一等奖学金 2次,二等奖学金 1次,三好学生称号 1次</td>
+        </tr>
+        <tr>
+            <td>技能证书</td>
+            <td colspan ="6">普通话证书、驾驶证、计算机二级证书</td>
+        </tr>
+        <tr>
+            <td>工作经历</td>
+            <td colspan ="6">
+                <ol>
+                    <li>20XX.XX - 20XX.XX，在阿飞科技公司担任XXX职务，负责XXX工作；</li>
+                    <li>20XX.XX - 20XX.XX，在阿飞科技公司担任XXX职务，负责XXX工作；</li>
+                    <li>20XX.XX - 20XX.XX，在阿飞科技公司担任XXX职务，负责XXX工作。</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <td>兴趣爱好</td>
+            <td colspan ="6">爱好朗诵、电影、篮球，乐于与人打交道，交友圈基广。</td>
+        </tr>
+        <tr>
+            <td>自我评价</td>
+            <td colspan ="6">
+                <ol>
+                    <li>有一定的实毁经历，善于学习和进取；</li>
+                    <li>个性开朗，容易相处，有责任感；</li>
+                    <li>坚忍不拔，吃苦耐劳，喜欢和善于迎接新的挑战。</li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

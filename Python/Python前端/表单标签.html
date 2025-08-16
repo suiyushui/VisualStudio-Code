@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美化表单示例</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 15px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        input[type="reset"] {
+            background-color: #dc3545;
+            color: white;
+        }
+        input[type="reset"]:hover {
+            background-color: #c82333;
+        }
+        br {
+            display: none; /* 移除换行标签以使布局更整洁 */
+        }
+    </style> -->
+</head>
+<body>
+    <form action="submit.php" method="post">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" placeholder="请输入用户名">
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="password" placeholder="请输入密码">
+        <label>
+            <input type="radio" name="gender" value="ture"> 男
+        </label>
+        <label>
+            <input type="radio" name="gender" value="false"> 女
+        </label>       
+
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+    </form>
+    <p>这是一个<em>包含<mark>高亮</mark>和<strong>强调</strong>标签的段落</em></p>
+
+    <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+        <p>网页标题</p>
+    </div>
+
+    <video src="../../cp7.mp4" width="50%" controls loop autoplay>
+        您的浏览器不支持播放视频
+    </video>
+</body>
+</html>

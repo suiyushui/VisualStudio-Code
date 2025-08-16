@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录界面</title>
+    <style>
+        div{
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        from{
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="login.php">
+            <label for="username" >用户:</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名" value="13812345678"><br>
+            <label for="password" >密码:</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码" ><br>
+            <input type="button" value="登录" onclick="login()">
+            <input type="reset" value="重置">
+        </form>
+    </div>
+    <script>
+        login = function(){
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if(username == "" || password == ""){
+                alert("用户名或密码不能为空！");
+            }
+            else{
+                window.location.href = "index.html"
+            }
+        }
+    </script>
+</body>
+</html>
